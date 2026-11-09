@@ -13,6 +13,30 @@
 - Theme files live in Shopify, not in this repo. Sections below marked "on the copy" are now live.
 - Later 2026-11-09 work (now live): homepage products section (sections/qc-home-products.liquid: 24 products, 6 per row, sort bar, View all); Collections page rows (sections/qc-collection-row.liquid: title + View all, sort bar + in-row search); policy pages (sections/qc-policy.liquid, templates/page.policy.json, no banner; layout/theme.liquid renders it for /policies/refund|privacy|terms|shipping URLs too); inner-page banners standardised (qc-page-hero: 320px desktop / 200px phone, image 2880x640, overlay None/Light/Dark setting); header country picker moved to the far right (header-group custom CSS); search icon only; product page "check before you buy" note (blocks/qc-buy-note.liquid) and real feature tiles.
 
+## Design round 2 on the working copy (2026-11-09, Mac) - NOT yet published
+- snippets/qc-global-styles.liquid (rendered in layout/theme.liquid head) holds the site-wide overrides:
+  - all H1 bold, page titles bigger
+  - About subtitle max 560px
+  - policy "On this page": no long line, marker on the panel's left edge; content full width with 20px padding
+  - reviews full width with 20px padding; accordion dividers off
+  - footer links orange on hover; orange Add to cart; 80px space after the last Collections row
+  - cart drawer floats 10px from top/right/bottom with orange pill buttons and a grey delete button
+  - search popup up to 1200px wide, 10 products in 5 columns
+- About intro: "Hi, we're Qualicart Shop."
+- Footer bottom bar:
+  - left: "(c) 2026 Qualicart Shop" + Terms and Policies
+  - right: "Powered by The PixelSeed Studio", linked to thepixelseed.com (blocks/qc-footer-credit.liquid)
+  - the copyright block has a new "Store name" setting
+- Product page: new 2x2 trust tiles (blocks/qc-trust-tiles.liquid, text editable in the editor) replace the old four-tile group.
+- Promo banners: sections/qc-promo-banners.liquid, two banners at 160px tall (image 1420x320).
+  - At the top of the Products page (templates/collection.json, so also on every individual collection page) and the Collections page (templates/list-collections.json).
+  - Hidden until an image is added; dashed placeholders show in the editor. Optional link per banner.
+- Sale collection (live, handle "sale", gid://shopify/Collection/684402016550):
+  - Smart rule: Sale % equals 1 OR greater than 1. Sale % allows 1-70, so Shopify rejects "greater than 0".
+  - Published to Online Store and POS. Link a promo banner to it.
+  - Sale % definition now has "smart collection condition" enabled.
+- Shopify gotcha: when a schema setting and its value are uploaded together (e.g. a new block setting plus the group JSON using it), the value is dropped. Upload the JSON again afterwards.
+
 ## Done on the copy
 - Footer: Shop/Help/About menus (footer-shop, footer-help, footer-about), "We accept" payment icons (Visa, Mastercard, Amex, PayPal, Apple Pay, Afterpay - fixed list in blocks/payment-icons.liquid), "Powered by Shopify" off.
 - Header menu: "qc-main-menu" = Collections, Products, About, Shipping, FAQ, Contact (live store still uses main-menu).
