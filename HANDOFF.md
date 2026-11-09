@@ -17,6 +17,8 @@
 - Collection pages: custom section sections/qc-collection-page.liquid (sidebar categories + filters, sort bar, 5-col grid, accent #FFB37D).
 - Pages: FAQ (templates/page.faq.json, accordion, one open at a time), Contact (templates/page.contact.json, custom dropdown subject), Shipping (templates/page.shipping.json).
 - Shared: sections/qc-page-hero.liquid, sections/qc-faq.liquid (reads Heading 2 questions from the page body).
+- About page (2026-11-09): templates/page.about.json = qc-page-hero banner + sections/qc-about.liquid (intro + highlight cards or optional image, 4 value cards, AU/NZ flag cards, CTA). About page's template set to "about". Banner image can be added in the editor (QC page hero > Background image).
+- AU/NZ "Ships to" flags (2026-11-09): product metafield qualicart.ships_to (list, choices AU/NZ, pinned in product admin; empty = both). snippets/qc-ship-to.liquid renders flags; blocks/qc-ship-to.liquid added under price in templates/product.json; compact flags on cards in qc-collection-page. Checkout is enforced by shipping profiles: "AU only" (AU zone, free 6–12 days; has the double burner stove) and "NZ only" (NZ zone, free 6–15 days; empty). Automated (2026-11-09): Shopify Flow workflow "New Workflow" (trigger: Product updated, field qualicart.ships_to) runs Send Admin API request deliveryProfileUpdate and moves all the product's variants to: AU only -> "AU only" profile, NZ only -> "NZ only" profile, both/empty -> General profile. So only the Ships to field needs setting. Tested on the stove (both -> General, AU -> AU only). Note: variants added later aren't moved until Ships to is saved again.
 
 ## Done on the copy (2026-11-09, later session)
 - "View all" buttons and collection titles on /collections: hover turns #FFB37D (blocks/_product-list-button.liquid, blocks/_product-list-text.liquid).
@@ -46,11 +48,19 @@ home-and-living, outdoor-and-camping, kitchen-and-dining, toys-and-games, arts-a
 
 ## DSers delivery estimates (checked 2026-11-09, default SKU, ship from CN)
 Most products: AliExpress Selection Standard, AU 6–11/7–12 days, NZ 6–13/10–15 days, about US$1.99 per order.
-"No Shipping" for the default SKU (needs another SKU or supplier before selling there):
-- 1:8 Truck Building Blocks (LIVE): no AU shipping
-- Coffee grinder, Ivory foldable fan: no AU shipping
-- Double burner stove: no NZ shipping
-- White bladeless fan, Titanium cookware set: no AU or NZ shipping
+Rechecked with longer load waits (first pass misread slow loads as "No Shipping"):
+- Truck blocks (AU 7–12), coffee grinder (AU 6–11), ivory fan (AU 6–11), white fan "White" SKU (AU 6–11, NZ 6–13): all ship. DSers opens the white fan on the "Green" SKU; check its mapping.
+- Double burner stove: only one SKU, no NZ shipping (AU 6–12 free). Keep as Draft or sell AU-only.
+- Titanium cookware set: Shopify listing is mapped to T-Ta8328BN-1, which ships to AU (6–11) and NZ (8–12), so AU + NZ is correct. T-Ta8326BN-1/-2 and T-Ta8327BN-2 show no shipping to either country (likely out of stock); T-Ta8328BN-2 is AU only.
+
+## DSers recheck of the 24 products published 2026-11-09 (Windows session + titanium set)
+All ship to both AU and NZ; Ships to stays AU + NZ, no changes made. Checked per variant:
+- Running vests: grey/red (UTOBEST, AU 7–14, NZ 8–13); black S/M/L/XL (WRELS, AU 6–12, NZ 8–12).
+- Hiking backpacks red 3L, dark blue 2L, green 1.5L (AU 7–14, NZ 8–13).
+- Sleeping bags green 190x75 (mapped SKU, confirmed) and brown 205x85; fleece liners black and coffee; cots black and army green.
+- Alcohol markers 122/180 pcs; storage bags 30L/42L black and green (AU 6–10, NZ 7–11).
+- Double burner stove rechecked: NZ still "No Shipping" (AU uses "Special Goods" shipping), so it stays AU only.
+How to read DSers reliably: the first reading after changing SKU is often a false "No Shipping". Switch country away and back, wait 15+ seconds, and only trust "No Shipping" if it repeats. To see which supplier SKU a Shopify product uses: hover the card > Mapping icon (read only; close and choose DISCARD, never Save).
 
 ## Other open items
 - Zoho email (zarene@qualicartshop.com): plan choice and DNS (MX, SPF, DKIM) pending.
