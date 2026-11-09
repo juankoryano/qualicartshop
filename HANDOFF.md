@@ -5,10 +5,13 @@
 - Products come from AliExpress via DSers (orders are placed manually). DSers is used on the MacBook.
 
 ## Themes
-- Live theme: "Tinker" (gid://shopify/OnlineStoreTheme/194745827622). Do not edit directly (connector blocks writes to the live theme).
-- Working copy: "Tinker - Qualicart edit" (gid://shopify/OnlineStoreTheme/196078305574), UNPUBLISHED.
-  Preview: https://qualicartshop.com/?preview_theme_id=196078305574
-- All design work so far is on the copy only. Theme files live in Shopify, not in this repo.
+- LIVE since 2026-11-09: "Tinker - Qualicart edit" (gid://shopify/OnlineStoreTheme/196078305574). The connector can't write to the live theme.
+- Working copy for design work: "Qualicart - working copy" (gid://shopify/OnlineStoreTheme/196095181094), UNPUBLISHED, duplicated from live on 2026-11-09 (includes the 9:40 pm editor save).
+  Preview: https://qualicartshop.com/?preview_theme_id=196095181094
+- Routine: do design/code work on the working copy, preview, then publish it; duplicate the live theme again for the next round. Don't edit the live theme in the Customizer while a copy is being worked on (publishing the copy would overwrite those edits).
+- The original "Tinker" theme (194745827622) was deleted on 2026-11-09 at the owner's request.
+- Theme files live in Shopify, not in this repo. Sections below marked "on the copy" are now live.
+- Later 2026-11-09 work (now live): homepage products section (sections/qc-home-products.liquid: 24 products, 6 per row, sort bar, View all); Collections page rows (sections/qc-collection-row.liquid: title + View all, sort bar + in-row search); policy pages (sections/qc-policy.liquid, templates/page.policy.json, no banner; layout/theme.liquid renders it for /policies/refund|privacy|terms|shipping URLs too); inner-page banners standardised (qc-page-hero: 320px desktop / 200px phone, image 2880x640, overlay None/Light/Dark setting); header country picker moved to the far right (header-group custom CSS); search icon only; product page "check before you buy" note (blocks/qc-buy-note.liquid) and real feature tiles.
 
 ## Done on the copy
 - Footer: Shop/Help/About menus (footer-shop, footer-help, footer-about), "We accept" payment icons (Visa, Mastercard, Amex, PayPal, Apple Pay, Afterpay - fixed list in blocks/payment-icons.liquid), "Powered by Shopify" off.
