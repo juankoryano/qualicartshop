@@ -23,12 +23,20 @@ home-and-living, outdoor-and-camping, kitchen-and-dining, toys-and-games, arts-a
 
 ## Before publishing the copy
 1. Homepage collection list (templates/index.json, collection_list_xpBxCm) still references OLD handles (collection1, collection-2, ...) and shows max 4 of 5 collections. Update to the new handles and raise max to 5.
-2. Fill the Shipping table in the theme editor with real delivery ranges and cost (currently generic text).
-3. Shipping rates: International rate is 1,200 PHP flat with no estimate. Split into Australia / New Zealand rates in AUD with the delivery range in the rate name.
-4. Reword or make true: "Delivery times shown before you pay" (announcement bar, FAQ, About, hero).
+2. DONE 2026-11-09: Shipping table filled (templates/page.shipping.json): dispatch within 2 business days; AU 6–12, NZ 6–15 business days after dispatch; free.
+3. DONE 2026-11-09: Shipping rates. International zone (28 countries, 1,200 PHP) deleted. New zones in General profile: "Australia" = "Free Standard Shipping (6–12 business days)" A$0; "New Zealand" = "Free Standard Shipping (6–15 business days)" A$0. Domestic PH zone left unchanged.
+4. Reword or make true: "Delivery times shown before you pay" (announcement bar, FAQ, About, hero). Now true at checkout (range is in the rate name); still check the wording.
 5. Enable payment methods that the footer icons show (Settings > Payments), including PayPal and Afterpay.
 6. Returns, Privacy, Terms pages are still empty.
 7. Contact page: no file upload (Shopify contact form can't); damaged-item note tells customers to reply with photos.
+
+## DSers delivery estimates (checked 2026-11-09, default SKU, ship from CN)
+Most products: AliExpress Selection Standard, AU 6–11/7–12 days, NZ 6–13/10–15 days, about US$1.99 per order.
+"No Shipping" for the default SKU (needs another SKU or supplier before selling there):
+- 1:8 Truck Building Blocks (LIVE): no AU shipping
+- Coffee grinder, Ivory foldable fan: no AU shipping
+- Double burner stove: no NZ shipping
+- White bladeless fan, Titanium cookware set: no AU or NZ shipping
 
 ## Other open items
 - Zoho email (zarene@qualicartshop.com): plan choice and DNS (MX, SPF, DKIM) pending.
