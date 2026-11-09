@@ -37,6 +37,13 @@
 - DSers: pricing rule None; Automatic Price Update = Do Nothing (locked on current plan), so sale prices are not overwritten. DSers only writes supplier cost into compare-at when pushing a new product (harmless: lower than price, no badge; cleared when a sale ends).
 - Sale prices are rounded to the cent (e.g. 73.91), not to .95 endings.
 
+## Policies (2026-11-09, Mac session)
+- Refund policy rewritten and saved (Settings > Policies, "Use automated policy" OFF so Shopify won't overwrite it): no change-of-mind returns; faulty/damaged/wrong/not-as-described items covered under ACL and NZ CGA; report by email with photos; we pay return postage when a return is needed; cancel before dispatch for a full refund. Draft source: policies/refund-policy-draft.md.
+- Return rules (Settings > Policies > Default rules) turned OFF (was 30-day returns, free return shipping), so customers can't self-serve change-of-mind returns. Cancellation rules were already off.
+- Footer menus (copy theme only) now link to /policies/refund-policy, /policies/privacy-policy, /policies/terms-of-service. The empty pages /pages/returns-and-refunds, /pages/privacy-policy, /pages/terms-of-service are no longer linked and can be deleted.
+- Still to do: Contact information policy (draft in policies/contact-information-draft.md, needs ABN/NZBN, business name, address or remove those lines). Privacy, Terms and Shipping policies are Shopify's automated templates (fine for now).
+- Products page (copy theme): sidebar redesigned (category rows with counts, chip filters, A$ price inputs, Under $50 / $50-$100 / $100+ quick chips, pill Apply/Clear all), sort bar 20px corners with pill buttons, 30 products per page. Login icon kept.
+
 ## Open items from this session
 - Compare-at prices on the products are LOWER than the selling price (DSers cost), so no sale tags show. Decide a real "was" price rule (ACCC: must be a genuine previous price) or leave blank.
 - Optional: show "from $X - $Y" price ranges on cards for multi-variant products.
