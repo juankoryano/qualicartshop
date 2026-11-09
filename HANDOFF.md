@@ -18,6 +18,20 @@
 - Pages: FAQ (templates/page.faq.json, accordion, one open at a time), Contact (templates/page.contact.json, custom dropdown subject), Shipping (templates/page.shipping.json).
 - Shared: sections/qc-page-hero.liquid, sections/qc-faq.liquid (reads Heading 2 questions from the page body).
 
+## Done on the copy (2026-11-09, later session)
+- "View all" buttons and collection titles on /collections: hover turns #FFB37D (blocks/_product-list-button.liquid, blocks/_product-list-text.liquid).
+- Product page (templates/product.json): price in #ff6600 at 1.5rem; "Shop The Full Collection" is now 12 products (2 rows of 6) with the same white/bordered cards as /collections plus a "View all" button; Judge.me star rating under the title; new section sections/qc-reviews.liquid (light gray #f4f4f4 rounded container with the Judge.me Review Widget, above the related products).
+- Judge.me Reviews installed on the store (free plan to be chosen in its onboarding). App embed enabled and saved on the COPY theme only; the onboarding page checks the live theme and will say "couldn't detect" until the copy is published. Judge.me green overridden to orange (#ff6600) and "Write a review" button made pill-shaped in qc-reviews.liquid.
+- snippets/price.liquid: sale price (orange) + gray strikethrough compare-at + "-NN%" tag when compare-at > price; ships-to AU/NZ flags (compact) under the price on every product card except the main product price.
+- Products page (sections/qc-collection-page.liquid): price now #ff6600, regular weight (matches homepage).
+- Published to the Online Store (store-wide, so LIVE too): 23 Active products that were unpublished (cots, sleeping bags, backpacks, vests, storage bags, markers, etc.). The Draft "Lightweight Blue Nylon Running Vest" stays hidden.
+
+## Open items from this session
+- Compare-at prices on the products are LOWER than the selling price (DSers cost), so no sale tags show. Decide a real "was" price rule (ACCC: must be a genuine previous price) or leave blank.
+- Optional: show "from $X - $Y" price ranges on cards for multi-variant products.
+- Optional: Judge.me star ratings on product cards; lengthen Judge.me review-request delay for slow AliExpress delivery.
+- Chrome: the Chrome signed in as qualicartonlineshop@gmail.com (Zarene Esguerra) is the one that works for Shopify admin work. A leftover live-theme editor tab may have an unsaved Judge.me toggle: close it without saving.
+
 ## Collections (handles)
 home-and-living, outdoor-and-camping, kitchen-and-dining, toys-and-games, arts-and-crafts (old handles redirect).
 
