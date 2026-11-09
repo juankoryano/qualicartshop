@@ -28,6 +28,15 @@
 - Products page (sections/qc-collection-page.liquid): price now #ff6600, regular weight (matches homepage).
 - Published to the Online Store (store-wide, so LIVE too): 23 Active products that were unpublished (cots, sleeping bags, backpacks, vests, storage bags, markers, etc.). The Draft "Lightweight Blue Nylon Running Vest" stays hidden.
 
+## Sales (2026-11-09, Mac session)
+- Theme copy: SALE badge shows automatically when compare-at > price. Orange (#ff6600) built-in card badge (snippets/product-badges-styles.liquid); SALE badge + "-NN%" on QC Products page cards (sections/qc-collection-page.liquid); product page shows a SALE pill, crossed-out price, "-NN%" and "You save A$X" (snippets/price.liquid, main product only).
+- Product field "Sale %" (qualicart.sale_percent, whole number 1–70, pinned; definition gid://shopify/MetafieldDefinition/590593229094).
+- Shopify Flow workflow "Sale % sets sale price" (ON): trigger Product updated on qualicart.sale_percent; action productVariantsBulkUpdate. Fill Sale % -> compare-at = normal price, price = normal price minus %. Change % -> recalculates from the normal price (no stacking). Clear Sale % -> price back to normal, compare-at removed. Tested on the unpublished blue nylon vest (86.95 -> 73.91 at 15%, 69.56 at 20%, back to 86.95).
+- Bulk: Products > select products > Bulk edit > add the "Sale %" column > fill/clear it.
+- Keep sales genuine (ACCC / NZ Fair Trading Act): only discount from the real current price, and keep sales time-limited. Do NOT raise compare-at above a price never charged.
+- DSers: pricing rule None; Automatic Price Update = Do Nothing (locked on current plan), so sale prices are not overwritten. DSers only writes supplier cost into compare-at when pushing a new product (harmless: lower than price, no badge; cleared when a sale ends).
+- Sale prices are rounded to the cent (e.g. 73.91), not to .95 endings.
+
 ## Open items from this session
 - Compare-at prices on the products are LOWER than the selling price (DSers cost), so no sale tags show. Decide a real "was" price rule (ACCC: must be a genuine previous price) or leave blank.
 - Optional: show "from $X - $Y" price ranges on cards for multi-variant products.
