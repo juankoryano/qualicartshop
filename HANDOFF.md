@@ -5,9 +5,9 @@
 - Products come from AliExpress via DSers (orders are placed manually). DSers is used on the MacBook.
 
 ## Themes
-- LIVE: "Qualicart - live" (gid://shopify/OnlineStoreTheme/196127621414), published 2026-11-10 after round 3 + product-page tweaks. The connector can't write files to the live theme.
-- Backup: "Qualicart - previous live" (196127260966), UNPUBLISHED, the theme from just before the last publish. No working copy exists right now; duplicate the live theme (themeDuplicate works through the connector) before the next round.
-- Deleted on 2026-11-10 at the owner's request: 196095181094, 196124737830, 196126900518 (older backups) and "Tinker - Qualicart edit" (196078305574).
+- LIVE: "Qualicart - live" (gid://shopify/OnlineStoreTheme/196138762534), last published 2026-11-10. The connector can't write files to the live theme.
+- Backup: "Qualicart - previous live" (196127621414), UNPUBLISHED, the theme from just before the last publish. No working copy exists right now; duplicate the live theme (themeDuplicate works through the connector) before the next round.
+- Deleted on 2026-11-10 at the owner's request: 196095181094, 196124737830, 196126900518, 196127260966 (older backups) and "Tinker - Qualicart edit" (196078305574).
 - Routine: work on the working copy, preview, publish; then delete the old theme and duplicate the live one again.
 - Routine: do design/code work on the working copy, preview, then publish it; duplicate the live theme again for the next round. Don't edit the live theme in the Customizer while a copy is being worked on (publishing the copy would overwrite those edits).
 - The original "Tinker" theme (194745827622) was deleted on 2026-11-09 at the owner's request.
@@ -28,6 +28,9 @@ All in snippets/qc-global-styles.liquid unless noted.
   - all white: no tinted summary, no header line, no lines around Discount/totals/rows
   - discount code box fully rounded like the Apply button, orange border on focus
 - Product page / header (also snippets/qc-global-styles.liquid): Add to cart and cart-drawer Check out text 17px (quick-add "Add" buttons left alone); product price semibold (600); .tax-note ("Taxes included. Shipping calculated at checkout.") light gray #9a938d; header cart count bubble (.cart-bubble__background) orange.
+- "Buy it now" (button.shopify-payment-button__button--unbranded): black, white 17px text, fully rounded. It only renders when an unbranded provider (PortOne) is active; with PayPal only, PayPal draws its own yellow button, which can't be restyled.
+- Contact page (sections/qc-contact.liquid): after a message is sent (?contact_posted=true) the form and heading are replaced by a large centred green confirmation (title 28px, text 18px) and the page scrolls to it. Test it with the ?contact_posted=true URL; don't submit real messages. Shopify has no built-in auto-reply to the customer for contact form messages (idea: Gmail canned-response filter on the notification email, untested).
+- Delivery wording is now 7-15 business days (dispatch within 2 business days) everywhere: templates/page.shipping.json, templates/page.about.json (cards say "Free tracked shipping"), templates/product.json (Shipping & Returns accordion), snippets/qc-structured-data.liquid (transitTime 7-15, handling 0-2), snippets/meta-tags.liquid, and the Shipping page SEO description metafield (global.description_tag).
 - Not yet checked on a phone-size screen: search popup columns and close X, cart drawer.
 
 ## Payments (2026-11-10)
@@ -35,6 +38,13 @@ All in snippets/qc-global-styles.liquid unless noted.
 - PayPal Express Checkout: reconnected to the owner's account zareneandreaesguerra@gmail.com (was shopatzarene@gmail.com, setup incomplete) and Active. Checkout shows PayPal only. Not yet confirmed that PayPal's "Debit or Credit Card" guest option appears for customers (set in the PayPal business account if not).
 - PortOne Payments (the "Pay via Cards/Wallets/Bank Transfer" option) was DEACTIVATED: its setup was never finished (PortOne key empty, "verification pending"), so card payments failed. Owner also felt AU/NZ shoppers wouldn't know it. Reactivate only after finishing PortOne verification. Other installed provider: CyberSource (unused).
 - 2% third-party transaction fee applies on top of provider fees.
+
+## Shipping, orders and Google (2026-11-10)
+- All products' stock sits at the "dsers-fulfillment-service" location. Shipping is managed in Markets (the "Australia" market includes AU and NZ). Active options: "Free Premium Tracked Shipping" (free, 7-15 business days, from DSers) and the connector-created free standard rates (apply to "Shop location" only, so customers don't see them for DSers-stocked items). The DSers "Standard $4.95" option was set to INACTIVE on 2026-11-10 (reactivate in Markets > Australia > Shipping if wanted); checkout now shows only the free tracked option. Shopify warns DSers "may not work with Markets".
+- Not verified: whether the AU-only gas stove can be ordered to NZ (DSers rates apply to "All products").
+- Order flow tested on 2026-11-10 with a one-use 100%-off code (since deleted) and an AU address: the "New order" email (qualicartonlineshop@gmail.com, all orders), DSers sync and the customer confirmation email all worked. Test order #1001 was cancelled by the owner (the connector blocks orderCancel); nothing was placed with the supplier. Customer emails come from store+...@shopifyemail.com (Gmail address, no custom sender domain).
+- Not yet verified: tracking number reaching the Shopify order from DSers on a real shipment, the shipping email's tracking link / "Track with Shop" button, and PayPal's guest card option for customers.
+- Google Merchant Center 5901960360, Shipping and returns: both policies (Australia, New Zealand) now Free, handling 0-2 days, transit 7-15 days (shows 7-17 days total), timezone Sydney. The policy names still contain the old "(6-12 business days)" text (internal only).
 
 ## Design round 2 (2026-11-09/10, Mac) - LIVE since 2026-11-10
 - snippets/qc-global-styles.liquid (rendered in layout/theme.liquid head) holds the site-wide overrides:
