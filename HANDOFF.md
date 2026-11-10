@@ -5,15 +5,29 @@
 - Products come from AliExpress via DSers (orders are placed manually). DSers is used on the MacBook.
 
 ## Themes
-- LIVE since 2026-11-10: "Qualicart - live" (gid://shopify/OnlineStoreTheme/196095181094; was named "Qualicart - working copy" until it was published). The connector can't write files to the live theme.
-- Working copy for design round 3: "Qualicart - working copy" (gid://shopify/OnlineStoreTheme/196124737830), UNPUBLISHED, duplicated from live on 2026-11-10 (all qc-* files identical to live).
-  Preview: https://qualicartshop.com/?preview_theme_id=196124737830
-- The old "Tinker - Qualicart edit" theme (196078305574) was deleted on 2026-11-10 at the owner's request.
+- LIVE since 2026-11-10 (round 3): "Qualicart - live" (gid://shopify/OnlineStoreTheme/196127260966). The connector can't write files to the live theme.
+- Backup: "Qualicart - previous live" (196126900518), UNPUBLISHED, the theme from just before the last publish. No working copy exists right now; duplicate the live theme (themeDuplicate works through the connector) before the next round.
+- Deleted on 2026-11-10 at the owner's request: 196095181094 and 196124737830 (older round-3 backups) and "Tinker - Qualicart edit" (196078305574).
 - Routine: work on the working copy, preview, publish; then delete the old theme and duplicate the live one again.
 - Routine: do design/code work on the working copy, preview, then publish it; duplicate the live theme again for the next round. Don't edit the live theme in the Customizer while a copy is being worked on (publishing the copy would overwrite those edits).
 - The original "Tinker" theme (194745827622) was deleted on 2026-11-09 at the owner's request.
 - Theme files live in Shopify, not in this repo. Sections below marked "on the copy" are now live.
 - Later 2026-11-09 work (now live): homepage products section (sections/qc-home-products.liquid: 24 products, 6 per row, sort bar, View all); Collections page rows (sections/qc-collection-row.liquid: title + View all, sort bar + in-row search); policy pages (sections/qc-policy.liquid, templates/page.policy.json, no banner; layout/theme.liquid renders it for /policies/refund|privacy|terms|shipping URLs too); inner-page banners standardised (qc-page-hero: 320px desktop / 200px phone, image 2880x640, overlay None/Light/Dark setting); header country picker moved to the far right (header-group custom CSS); search icon only; product page "check before you buy" note (blocks/qc-buy-note.liquid) and real feature tiles.
+
+## Design round 3 (2026-11-10) - LIVE
+All in snippets/qc-global-styles.liquid unless noted.
+- Search popup (Horizon dialog.search-modal__content):
+  - centred on screen (desktop), 24px corners, height fits content up to 90dvh; 5 products per row (4 below 1100px, 3 below 900px, 2 on phones); square images; 2 rows fit above "View all"
+  - snippets/predictive-search-empty-state.liquid shows 10 products (was 4)
+  - search bar: white pill, 1.5px dark border, orange border + glow while typing; 22px black search icon like the header's
+  - desktop: "Clear" is an X icon inside the bar; the separate close button is hidden (click outside closes). Phones: close X beside the bar, no clear X
+  - product cards: border #e0e0e0, 10px corners, hover = soft shadow only (theme lift, grey fill, padding jump and image swap turned off), matching the homepage cards
+  - gotcha: Horizon's focus rule .predictive-search-form__header-inner:has(.search-input:focus) uses !important; ours needs higher specificity (body ... prefix)
+- Cart drawer:
+  - z-index 2147483000 on the dialog, and on its header section while open, so it sits above the header (theme had 9 vs header 16-18)
+  - all white: no tinted summary, no header line, no lines around Discount/totals/rows
+  - discount code box fully rounded like the Apply button, orange border on focus
+- Not yet checked on a phone-size screen: search popup columns and close X, cart drawer.
 
 ## Design round 2 (2026-11-09/10, Mac) - LIVE since 2026-11-10
 - snippets/qc-global-styles.liquid (rendered in layout/theme.liquid head) holds the site-wide overrides:
