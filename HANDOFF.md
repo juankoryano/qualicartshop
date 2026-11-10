@@ -46,6 +46,13 @@ All in snippets/qc-global-styles.liquid unless noted.
 - Not yet verified: tracking number reaching the Shopify order from DSers on a real shipment, the shipping email's tracking link / "Track with Shop" button, and PayPal's guest card option for customers.
 - Google Merchant Center 5901960360, Shipping and returns: both policies (Australia, New Zealand) now Free, handling 0-2 days, transit 7-15 days (shows 7-17 days total), timezone Sydney. The policy names still contain the old "(6-12 business days)" text (internal only).
 
+## Prices (2026-11-10)
+- All 41 products' selling prices were raised ~20% at the owner's request: new price = round(old x 1.2) - 0.05 (so they end in .95). Example: truck 167.95 -> 201.95, gas stove 239.95 -> 287.95.
+- The one real sale item (Lightweight Blue Nylon Running Vest) had its price and compare-at both scaled so the ~10% discount stays: 78.26 / 86.95 -> 93.56 / 103.95.
+- Other products' compare-at prices are DSers' supplier costs (lower than the selling price, so no sale shows); left untouched. Costs per item are stored in AUD by DSers.
+- A DSers pricing rule could reset prices on a later sync; re-check prices after the next DSers sync. Merchant Center updates prices from Shopify on its own (can lag a day or two).
+- The old prices are not in the repo. They were saved only in a scratchpad file (price_backup_and_plan_2026-11-10.json); to revert, divide by 1.2 and re-round, or restore from that file if it still exists.
+
 ## Design round 2 (2026-11-09/10, Mac) - LIVE since 2026-11-10
 - snippets/qc-global-styles.liquid (rendered in layout/theme.liquid head) holds the site-wide overrides:
   - all H1 bold, page titles bigger
