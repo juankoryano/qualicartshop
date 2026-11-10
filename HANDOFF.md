@@ -1,18 +1,30 @@
 # Qualicart handoff notes (updated 2026-11-10)
 
 ## Store
-- Shopify: qualicartshop.myshopify.com, domain qualicartshop.com, currency AUD, ships to Australia and New Zealand.
+- Shopify: qualicartshop.myshopify.com, domain qualicartshop.com, currency AUD, sells to AUSTRALIA ONLY (since 2026-11-10; New Zealand is switched off until the owner's ABN is approved, see "Australia-only changeover").
 - Products come from AliExpress via DSers (orders are placed manually). DSers is used on the MacBook.
 
 ## Themes
-- LIVE: "Qualicart - live" (gid://shopify/OnlineStoreTheme/196138762534), last published 2026-11-10. The connector can't write files to the live theme.
-- Backup: "Qualicart - previous live" (196127621414), UNPUBLISHED, the theme from just before the last publish. No working copy exists right now; duplicate the live theme (themeDuplicate works through the connector) before the next round.
-- Deleted on 2026-11-10 at the owner's request: 196095181094, 196124737830, 196126900518, 196127260966 (older backups) and "Tinker - Qualicart edit" (196078305574).
+- LIVE: "Qualicart - live" (gid://shopify/OnlineStoreTheme/196141875494), published 2026-11-10 (includes the Australia-only wording, Sale sort and semibold prices). The connector can't write files to the live theme.
+- Backup: "Qualicart - previous live" (196138762534), UNPUBLISHED, the theme from just before the last publish. No working copy exists right now; duplicate the live theme (themeDuplicate works through the connector) before the next round.
+- Deleted on 2026-11-10 at the owner's request: 196127621414 ("Qualicart - older backup"), 196095181094, 196124737830, 196126900518, 196127260966 (older backups) and "Tinker - Qualicart edit" (196078305574).
 - Routine: work on the working copy, preview, publish; then delete the old theme and duplicate the live one again.
 - Routine: do design/code work on the working copy, preview, then publish it; duplicate the live theme again for the next round. Don't edit the live theme in the Customizer while a copy is being worked on (publishing the copy would overwrite those edits).
 - The original "Tinker" theme (194745827622) was deleted on 2026-11-09 at the owner's request.
 - Theme files live in Shopify, not in this repo. Sections below marked "on the copy" are now live.
 - Later 2026-11-09 work (now live): homepage products section (sections/qc-home-products.liquid: 24 products, 6 per row, sort bar, View all); Collections page rows (sections/qc-collection-row.liquid: title + View all, sort bar + in-row search); policy pages (sections/qc-policy.liquid, templates/page.policy.json, no banner; layout/theme.liquid renders it for /policies/refund|privacy|terms|shipping URLs too); inner-page banners standardised (qc-page-hero: 320px desktop / 200px phone, image 2880x640, overlay None/Light/Dark setting); header country picker moved to the far right (header-group custom CSS); search icon only; product page "check before you buy" note (blocks/qc-buy-note.liquid) and real feature tiles.
+
+## Australia-only changeover (2026-11-10) - LIVE
+Why: the owner wanted separate NZD prices, but Shopify can't sell in two currencies here (see Payments). Decision: sell to Australia only now; set up New Zealand after the ABN is approved.
+- Markets: only the "Australia" market (gid://shopify/Market/105458729254) is active and NZ was removed from it (conditionsToDelete), so checkout lists Australia only. No NZ market exists. A "Philippines" market is draft. Creating an NZ market with baseCurrency NZD fails: "The shop's payment gateway does not support enabling more than one currency."
+- Theme wording is AU-only; it comes back by itself where it depends on `localization.available_countries`:
+  - snippets/qc-ship-to.liquid (AU/NZ flags) renders only when more than one country is available
+  - sections/qc-shipping-table.liquid skips the NZ card unless an NZ country exists
+  - sections/qc-about.liquid wraps the NZ block in `{%- if nz_country != blank -%}`
+- Hardcoded AU-only text (revert when NZ returns): sections/header-group.json, templates/page.about.json, templates/page.contact.json, templates/product.json, blocks/qc-trust-tiles.liquid, snippets/meta-tags.liquid (descriptions), snippets/qc-structured-data.liquid (`applicableCountry:["AU"]`, `areaServed` AU, `assign ship_nz = false`).
+- The returns/refunds policy text and the FAQ still mention NZ consumer law (legal text, left alone).
+- Open: FAQ says change-of-mind returns are accepted within 30 days; the returns policy and product note say they are not. The owner hasn't decided which is right.
+- To bring NZ back (needs ABN first): change the store country and set up Shopify Payments (or another provider that supports NZD), create an NZ market with NZD price lists, restore "Australia and New Zealand" wording above, re-add an NZ shipping policy in Merchant Center.
 
 ## Design round 3 (2026-11-10) - LIVE
 All in snippets/qc-global-styles.liquid unless noted.
@@ -27,6 +39,8 @@ All in snippets/qc-global-styles.liquid unless noted.
   - z-index 2147483000 on the dialog, and on its header section while open, so it sits above the header (theme had 9 vs header 16-18)
   - all white: no tinted summary, no header line, no lines around Discount/totals/rows
   - discount code box fully rounded like the Apply button, orange border on focus
+- Prices are semibold (600) on the product page, Collections page and Products page (`main[data-template="product|collection|list-collections"] .price` and `.qc-card__price`); compare-at and struck-through prices stay 400.
+- Sale sort (sections/qc-collection-page.liquid): the sort bar has a "Sale" button (`name="sort_by" value="sale"`) after Top Sales. Liquid can't read `request.query_string`, so the page checks `collection.sort_by == 'sale'` (Shopify returns the raw URL value). With Sale active it loads 50 per page and shows items where compare-at > price first, then the rest (paginate max is 50).
 - Product page / header (also snippets/qc-global-styles.liquid): Add to cart and cart-drawer Check out text 17px (quick-add "Add" buttons left alone); product price semibold (600); .tax-note ("Taxes included. Shipping calculated at checkout.") light gray #9a938d; header cart count bubble (.cart-bubble__background) orange.
 - "Buy it now" (button.shopify-payment-button__button--unbranded): black, white 17px text, fully rounded. It only renders when an unbranded provider (PortOne) is active; with PayPal only, PayPal draws its own yellow button, which can't be restyled.
 - Contact page (sections/qc-contact.liquid): after a message is sent (?contact_posted=true) the form and heading are replaced by a large centred green confirmation (title 28px, text 18px) and the page scrolls to it. Test it with the ?contact_posted=true URL; don't submit real messages. Shopify has no built-in auto-reply to the customer for contact form messages (idea: Gmail canned-response filter on the notification email, untested).
@@ -35,23 +49,24 @@ All in snippets/qc-global-styles.liquid unless noted.
 
 ## Payments (2026-11-10)
 - Store address country is the Philippines (Benguet), so Shopify Payments is NOT available (Settings > Payments only lists third-party providers). If the owner ever sets up a genuine Australian business + AU bank account, Shopify Payments becomes possible; an address change alone isn't enough.
+- Multi-currency is blocked: PayPal (the only active gateway) supports one currency, so the store is AUD only. Path to NZD pricing: ABN approved, change store country to Australia, enable Shopify Payments, then add an NZ market with NZD price lists. (Wise and Google Pay were discussed; neither replaces a Shopify checkout gateway.)
 - PayPal Express Checkout: reconnected to the owner's account zareneandreaesguerra@gmail.com (was shopatzarene@gmail.com, setup incomplete) and Active. Checkout shows PayPal only. Not yet confirmed that PayPal's "Debit or Credit Card" guest option appears for customers (set in the PayPal business account if not).
 - PortOne Payments (the "Pay via Cards/Wallets/Bank Transfer" option) was DEACTIVATED: its setup was never finished (PortOne key empty, "verification pending"), so card payments failed. Owner also felt AU/NZ shoppers wouldn't know it. Reactivate only after finishing PortOne verification. Other installed provider: CyberSource (unused).
 - 2% third-party transaction fee applies on top of provider fees.
 
 ## Shipping, orders and Google (2026-11-10)
-- All products' stock sits at the "dsers-fulfillment-service" location. Shipping is managed in Markets (the "Australia" market includes AU and NZ). Active options: "Free Premium Tracked Shipping" (free, 7-15 business days, from DSers) and the connector-created free standard rates (apply to "Shop location" only, so customers don't see them for DSers-stocked items). The DSers "Standard $4.95" option was set to INACTIVE on 2026-11-10 (reactivate in Markets > Australia > Shipping if wanted); checkout now shows only the free tracked option. Shopify warns DSers "may not work with Markets".
+- All products' stock sits at the "dsers-fulfillment-service" location. Shipping is managed in Markets (the "Australia" market, AU only since 2026-11-10). Active options: "Free Premium Tracked Shipping" (free, 7-15 business days, from DSers) and the connector-created free standard rates (apply to "Shop location" only, so customers don't see them for DSers-stocked items). The DSers "Standard $4.95" option was set to INACTIVE on 2026-11-10 (reactivate in Markets > Australia > Shipping if wanted); checkout now shows only the free tracked option. Shopify warns DSers "may not work with Markets".
 - Not verified: whether the AU-only gas stove can be ordered to NZ (DSers rates apply to "All products").
 - Order flow tested on 2026-11-10 with a one-use 100%-off code (since deleted) and an AU address: the "New order" email (qualicartonlineshop@gmail.com, all orders), DSers sync and the customer confirmation email all worked. Test order #1001 was cancelled by the owner (the connector blocks orderCancel); nothing was placed with the supplier. Customer emails come from store+...@shopifyemail.com (Gmail address, no custom sender domain).
 - Not yet verified: tracking number reaching the Shopify order from DSers on a real shipment, the shipping email's tracking link / "Track with Shop" button, and PayPal's guest card option for customers.
-- Google Merchant Center 5901960360, Shipping and returns: both policies (Australia, New Zealand) now Free, handling 0-2 days, transit 7-15 days (shows 7-17 days total), timezone Sydney. The policy names still contain the old "(6-12 business days)" text (internal only).
+- Google Merchant Center 5901960360, Shipping and returns: the New Zealand shipping policy was DELETED on 2026-11-10 (Australia only). Only the API-synced Australia policy remains, showing Free, 4-12 days. My manual 7-15 day edit was overwritten, apparently by the Google & YouTube app re-syncing shipping; if accurate times matter, check how the app builds them (Shopify shipping rate names / Markets) instead of editing Merchant Center by hand. Re-check that the NZ policy doesn't reappear.
 
 ## Prices (2026-11-10)
-- All 41 products' selling prices were raised ~20% at the owner's request: new price = round(old x 1.2) - 0.05 (so they end in .95). Example: truck 167.95 -> 201.95, gas stove 239.95 -> 287.95.
-- The one real sale item (Lightweight Blue Nylon Running Vest) had its price and compare-at both scaled so the ~10% discount stays: 78.26 / 86.95 -> 93.56 / 103.95.
+- The 20% price rise made earlier on 2026-11-10 was REVERTED at the owner's request: all products are back at their original prices. A sitewide 20% sale was considered and skipped (keep sales genuine, no fake "was" prices).
 - Other products' compare-at prices are DSers' supplier costs (lower than the selling price, so no sale shows); left untouched. Costs per item are stored in AUD by DSers.
-- A DSers pricing rule could reset prices on a later sync; re-check prices after the next DSers sync. Merchant Center updates prices from Shopify on its own (can lag a day or two).
-- The old prices are not in the repo. They were saved only in a scratchpad file (price_backup_and_plan_2026-11-10.json); to revert, divide by 1.2 and re-round, or restore from that file if it still exists.
+- A DSers pricing rule could reset prices on a later sync (currently None, Automatic Price Update = Do Nothing); re-check prices after the next DSers sync. Merchant Center updates prices from Shopify on its own (can lag a day or two).
+- The original prices were saved only in a scratchpad file (price_backup_and_plan_2026-11-10.json), not in the repo.
+- Sale collection gotcha: when the owner put one product on sale it moved from "Outdoor and Camping" to Sale. The Lightweight Blue Nylon Running Vest was fixed by adding it back to Outdoor and Camping (collection rule via collectionUpdate sourcesToUpdate). Check other products' category membership if the same happens again.
 
 ## Design round 2 (2026-11-09/10, Mac) - LIVE since 2026-11-10
 - snippets/qc-global-styles.liquid (rendered in layout/theme.liquid head) holds the site-wide overrides:
