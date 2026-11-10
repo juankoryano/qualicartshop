@@ -1,19 +1,19 @@
-# Qualicart handoff notes (updated 2026-11-09)
+# Qualicart handoff notes (updated 2026-11-10)
 
 ## Store
 - Shopify: qualicartshop.myshopify.com, domain qualicartshop.com, currency AUD, ships to Australia and New Zealand.
 - Products come from AliExpress via DSers (orders are placed manually). DSers is used on the MacBook.
 
 ## Themes
-- LIVE since 2026-11-09: "Tinker - Qualicart edit" (gid://shopify/OnlineStoreTheme/196078305574). The connector can't write to the live theme.
-- Working copy for design work: "Qualicart - working copy" (gid://shopify/OnlineStoreTheme/196095181094), UNPUBLISHED, duplicated from live on 2026-11-09 (includes the 9:40 pm editor save).
-  Preview: https://qualicartshop.com/?preview_theme_id=196095181094
+- LIVE since 2026-11-10: "Qualicart - working copy" (gid://shopify/OnlineStoreTheme/196095181094), published from the admin after design round 2. The connector can't write to the live theme.
+- Previous live theme "Tinker - Qualicart edit" (gid://shopify/OnlineStoreTheme/196078305574) is now an unpublished draft (fallback; can be deleted later).
+- For the next design round: duplicate the live theme, work on the duplicate, publish it.
 - Routine: do design/code work on the working copy, preview, then publish it; duplicate the live theme again for the next round. Don't edit the live theme in the Customizer while a copy is being worked on (publishing the copy would overwrite those edits).
 - The original "Tinker" theme (194745827622) was deleted on 2026-11-09 at the owner's request.
 - Theme files live in Shopify, not in this repo. Sections below marked "on the copy" are now live.
 - Later 2026-11-09 work (now live): homepage products section (sections/qc-home-products.liquid: 24 products, 6 per row, sort bar, View all); Collections page rows (sections/qc-collection-row.liquid: title + View all, sort bar + in-row search); policy pages (sections/qc-policy.liquid, templates/page.policy.json, no banner; layout/theme.liquid renders it for /policies/refund|privacy|terms|shipping URLs too); inner-page banners standardised (qc-page-hero: 320px desktop / 200px phone, image 2880x640, overlay None/Light/Dark setting); header country picker moved to the far right (header-group custom CSS); search icon only; product page "check before you buy" note (blocks/qc-buy-note.liquid) and real feature tiles.
 
-## Design round 2 on the working copy (2026-11-09, Mac) - NOT yet published
+## Design round 2 (2026-11-09/10, Mac) - LIVE since 2026-11-10
 - snippets/qc-global-styles.liquid (rendered in layout/theme.liquid head) holds the site-wide overrides:
   - all H1 bold, page titles bigger
   - About subtitle max 560px
@@ -35,6 +35,20 @@
   - Smart rule: Sale % equals 1 OR greater than 1. Sale % allows 1-70, so Shopify rejects "greater than 0".
   - Published to Online Store and POS. Link a promo banner to it.
   - Sale % definition now has "smart collection condition" enabled.
+- Later round-2 changes (also live):
+  - Inner-page banner (qc-page-hero): on phones the H1 and subtext sit above the image; image is a 200px card. Single image only (mobile-image setting removed).
+  - Reviews box 40px side padding (24px on phones).
+  - Shipping page cards redesigned (sections/qc-shipping-table.liquid): flag, country, Free shipping pill, icon rows, no divider lines.
+  - About page highlight boxes: orange icon on the left, value and label beside it.
+  - Homepage products: search box in the sort bar. It uses Shopify store-wide search via sections/qc-home-search.liquid (up to 48 results); cards come from snippets/qc-home-card.liquid.
+  - Homepage collection cards: titles bold, 20px lower, split before "and" (blocks/collection-title.liquid, homepage only).
+  - Hidden "Qualicart" H1 removed from sections/header.liquid (homepage has one H1).
+- SEO (2026-11-10):
+  - snippets/qc-structured-data.liquid (rendered in layout head): WebSite + OnlineStore on home, Product/ProductGroup with AU/NZ shipping and return policy, breadcrumbs, FAQPage. Shopify's built-in product JSON-LD removed from sections/product-information.liquid.
+  - snippets/meta-tags.liquid: description fallbacks, logo as share image, /policies/ pages canonical to /pages/ copies.
+  - Store data: SEO titles/descriptions on pages, collections, 4 products, homepage (Online Store > Preferences). /pages/products hidden from search (seo.hidden).
+  - All 41 products have a Shopify standard category.
+- Google & YouTube channel installed 2026-11-10; Merchant Center "Qualicart" created and linked (qualicartonlineshop@gmail.com); 40 live products published to the channel. Free listings only, no Google Ads account. Check approvals in a few days.
 - Shopify gotcha: when a schema setting and its value are uploaded together (e.g. a new block setting plus the group JSON using it), the value is dropped. Upload the JSON again afterwards.
 
 ## Done on the copy
