@@ -5,9 +5,11 @@
 - Products come from AliExpress via DSers (orders are placed manually). DSers is used on the MacBook.
 
 ## Themes
-- LIVE since 2026-11-10: "Qualicart - working copy" (gid://shopify/OnlineStoreTheme/196095181094), published from the admin after design round 2. The connector can't write to the live theme.
-- Previous live theme "Tinker - Qualicart edit" (gid://shopify/OnlineStoreTheme/196078305574) is now an unpublished draft (fallback; can be deleted later).
-- For the next design round: duplicate the live theme, work on the duplicate, publish it.
+- LIVE since 2026-11-10: "Qualicart - live" (gid://shopify/OnlineStoreTheme/196095181094; was named "Qualicart - working copy" until it was published). The connector can't write files to the live theme.
+- Working copy for design round 3: "Qualicart - working copy" (gid://shopify/OnlineStoreTheme/196124737830), UNPUBLISHED, duplicated from live on 2026-11-10 (all qc-* files identical to live).
+  Preview: https://qualicartshop.com/?preview_theme_id=196124737830
+- The old "Tinker - Qualicart edit" theme (196078305574) was deleted on 2026-11-10 at the owner's request.
+- Routine: work on the working copy, preview, publish; then delete the old theme and duplicate the live one again.
 - Routine: do design/code work on the working copy, preview, then publish it; duplicate the live theme again for the next round. Don't edit the live theme in the Customizer while a copy is being worked on (publishing the copy would overwrite those edits).
 - The original "Tinker" theme (194745827622) was deleted on 2026-11-09 at the owner's request.
 - Theme files live in Shopify, not in this repo. Sections below marked "on the copy" are now live.
