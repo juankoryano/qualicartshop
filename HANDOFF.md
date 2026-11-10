@@ -49,6 +49,11 @@
   - Store data: SEO titles/descriptions on pages, collections, 4 products, homepage (Online Store > Preferences). /pages/products hidden from search (seo.hidden).
   - All 41 products have a Shopify standard category.
 - Google & YouTube channel installed 2026-11-10; Merchant Center "Qualicart" created and linked (qualicartonlineshop@gmail.com); 40 live products published to the channel. Free listings only, no Google Ads account. Check approvals in a few days.
+  - Merchant Center account 5901960360. Shopify did not sync shipping, so it was added by hand in Merchant Center (Shipping and returns): "Australia free standard shipping" (handling 0-2, transit 6-12 days) and "New Zealand free standard shipping" (0-2, 6-15), both all products, free. Note: the NZ policy also covers the AU-only gas stove (checkout still blocks NZ for it).
+  - Return policy (AU + NZ): defective products only, no exchanges, link /policies/refund-policy. Verified.
+  - After adding shipping: 41 products "Limited", 0 not approved (new account).
+- Google Analytics 4 (2026-11-10): account "Qualicart", property qualicartshop.com (Perth time, AUD), web stream "Qualicart Shop website", measurement ID G-JEQVFW6JMT. Connected in Google & YouTube app (status Active), which sends ecommerce events; no theme code.
+- Google Search Console (2026-11-10): URL-prefix property https://qualicartshop.com/, auto-verified by the HTML meta tag the Google & YouTube app adds. sitemap.xml submitted; homepage already indexed, re-crawl requested.
 - Shopify gotcha: when a schema setting and its value are uploaded together (e.g. a new block setting plus the group JSON using it), the value is dropped. Upload the JSON again afterwards.
 
 ## Done on the copy
