@@ -200,3 +200,14 @@ How to read DSers reliably: the first reading after changing SKU is often a fals
 - Set DSers push status to Draft.
 
 No secrets (API keys, passwords) belong in this repo.
+
+## Related products under reviews (2026-11-18) - on unpublished copy, not live yet
+- Theme copy **"Qualicart - related products v2"** (gid://shopify/OnlineStoreTheme/196482302246), duplicated from live "Qualicart - mobile home sort" (196384882982) on 2026-11-18. Owner publishes after preview. Preview: `/products/<handle>?preview_theme_id=196482302246`.
+- "Qualicart - related products" (196481974566) is an extra copy from a failed first attempt (connector sandbox opened it before the copy finished, so it showed empty). Safe to delete in admin.
+- Product page order: main → qc_reviews → **qc_related** (new) → qc_request. "Shop The Full Collection" product-list row removed.
+- New files: `sections/qc-related.liquid`, `snippets/qc-related-card.liquid` (card style copied from qc-collection-row: white bordered card, orange semibold price, SALE badge, stars). Styles are an inline `<style>` (a new section's `{% stylesheet %}` doesn't show in preview before commit).
+- Data: product metafields (definitions created, storefront readable, list.product_reference):
+  - `qualicart.variant_siblings` = "Other sizes & colours" (same AliExpress listing split into products, plus approved merges: coffee canisters, spice racks, vests).
+  - `qualicart.family_products` = "You may also like" (broader family). 174 metafields set for all 96 products; 18 products have no variant group.
+- Behaviour: variants first, then family; 2 rows visible (6/row desktop, 3 tablet, 2 phone), variants rows count first and family fills the rest; "Show more" reveals the rest (only shown when there is more). If family can't fill the desktop rows it's topped up from the product's first collection (not all/frontpage). "View all" (with count) links to that collection, beside the first heading.
+- New products: add them to these two metafields (Products > product > Metafields), and add the new product to its siblings' lists too. Builder script used: scratchpad build_related.py (groups/families listed in the 2026-11-18 session).
