@@ -235,3 +235,10 @@ No secrets (API keys, passwords) belong in this repo.
   - snippets/qc-global-styles.liquid: "Rounded corners: 16px" block overriding custom qc-* cards/panels/menus/forms/banners, Judge.me panels, cart drawer + item images, search popup + its cards. Intentionally NOT changed: buttons and pill controls (999px), small SALE/sold-out/-% tags (3px), circles/flags/dots. Homepage collection cards and mega-menu images are square (0px) and were left square.
   - Product card borders now #ece7e2 (var(--qc-line), same as the collection sidebar cards), incl. search popup cards.
   - templates/index.json: both hero slideshows corner_radius 20->16; collection grid card border_radius 10->16 and card image 20->16 (verified on preview). Note: a first upload accidentally changed the disabled "Media with text" section's background/padding; restored to color3 / 0 / 0 in the next upload.
+
+## Price note: "Free shipping · GST included" (2026-11-18) - on unpublished copy
+- "Qualicart - related products v2" (196482302246) was found PUBLISHED (MAIN) on 2026-11-18 and is the only theme left, so everything listed above for that copy is now live.
+- New working copy "Qualicart - price note" (gid://shopify/OnlineStoreTheme/196499407142), duplicated from it via Admin API themeDuplicate. Preview: `/products/<handle>?preview_theme_id=196499407142`. Owner publishes.
+- blocks/price.liquid: the tax note under the product price ("Taxes included. Shipping calculated at checkout.") replaced by an orange truck icon + "Free shipping · GST included" (14px semibold, #2b2b2b; "· GST included" only when cart.taxes_included). Still controlled by the price block's "show tax info" checkbox. Selectors are extra-specific because qc global CSS forces `.product-details .tax-note *` grey with !important.
+- Checked first: AU and NZ zones (General, AU only, NZ only profiles) have only $0 rates. Leftover "Domestic" PH zone in the General profile has a paid ₱165 rate plus a free one; irrelevant while only AU/NZ are sold to.
+- Verified on preview in the browser pane: text, colours, no Liquid errors, old wording gone.
