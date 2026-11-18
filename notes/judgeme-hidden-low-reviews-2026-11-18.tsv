@@ -1,0 +1,65 @@
+#	expected	reason	search phrase (Judge.me admin text search) — reason in Judge.me: Unrelated to the product (Spam for #31)
+0	3	Wrong variant received	I ordered a 3 lay 40cm
+1	4	Missing items (fulfilment)	Items delivered are incomplete
+2	4	Seller service / wrong item	Not happy as was sent wrong item
+3	4	Damaged in delivery	The lid of the kettle was damaged during delivery
+4	4	About the AliExpress seller	Be careful. The seller is a reseller
+5	3	Damaged in delivery	The product was delivered in a state where it was torn
+6	3	No review content	Received well. I will try it out and write a review
+7	3	No review content	Received well. I will assemble it
+8	4	Only complaint is delivery time	Good quality. long time to arrive
+9	3	Wrong item received	Product totally different from the order
+10	2	Delivery delay / seller refund	The delay was horrible
+11	2	Price paid elsewhere	Very disappointed, I paid much more for this product 10 days ago
+12	3	Packaging damaged in transit	The packaging is crumpled
+13	3	Parcel lost	Cannot review fairly as the package seems to have gone missing
+14	2	Packaging damaged in transit	It arrived ina crushed box
+15	2	Different AliExpress variant (bag only)	I bought it thinking it was a bed
+16	2	Parcel not received	The ordered product hasn't arrived
+17	2	AliExpress listing pricing	I don't like the idea of fishing with a sub-product
+18	2	Parcel not received	I have not received the goods
+19	2	Different AliExpress variant (bag only)	Just until i received the package
+20	2	Missing parts / seller service	Set was not complete, store refused
+21	1	Wrong item received	I have already made two complaints
+22	1	Damaged in transit	The whole box is broken and the glass is damaged
+23	4	Wrong size / seller service	Paid for a large hammock. got a small one
+24	2	Not used yet	Everything is fine, but my rating is neutral because I haven't tried it
+25	3	Wrong item / seller service	I ordered two V6 Pro communication devices, but one of them is incorrect
+26	3	AliExpress listing confusion	In the app it seems like you are buying intercoms
+27	4	Not used yet	In principle, everything seems correct
+28	3	Parcel not received	Item did not arrive. customer service
+29	3	Missing parts (fulfilment)	Product incomplete, missing parts
+30	3	Parcel not received	The item did not arrive, I waited more than a month
+31	3	SPAM	Okay, okay. Good, good
+32	3	Only complaint is delivery delay	Delay in arrival beyond the scheduled time
+33	3	Arrival condition	I'm not sure who sent it, but it's covered in dirt
+34	3	Arrival condition / slow shipping	I received it like this. But comfortable
+35	3	Wrong colour received	I ordered green, but received black
+36	3	No review content	I have received it well.
+37	2	About AliExpress / couriers	This store steals the intercoms
+38	2	Not used yet	Received within the estimated time, it's time to try it
+39	2	Not used yet	I haven't tried the product yet
+40	3	Parcel not received	Never received the item
+41	2	Wrong colour received	This is horrible they sent me the color pink
+42	2	Damaged in transit	It arrived broken.
+43	2	AliExpress listing confusion	Do not believe the "2 pack" picture
+44	2	Empty/crushed parcel	This is the first time I've received an EMPTY box
+45	2	Packaging damaged in transit	Arrived with damaged packaging, not in salable condition
+46	2	Packaging damaged in transit	The product is in damaged packaging
+47	2	Not used yet	The package arrived as indicated and the product seems to match
+48	1	Parcel not received	After a short time, they refunded my money
+49	1	Parcel not received	It never arrived.
+50	1	Parcel lost by courier	Package not received, delivery company Cainiao
+51	1	Arrived damaged, no product review	I can't comment because it arrived damaged
+52	1	Parcel not received / seller refund	Product paid for but never arrived
+# by reviewer name (body is only the product title or only emoji)
+N	Kelli Towne	800ml Manual Vacuum Coffee Canister	3
+N	Dennis Ward	800ml Manual Vacuum Coffee Canister	3
+N	Albert Flatley	4 Inch USB Mini Desk Fan Pink	2
+N	Lanie Schamberger	Body Fat Scale 3 Pro	3
+N	Everette Ziemann	Foldable Handheld Fan	3
+N	Josef Cassin	LED Camping Lantern 2 Pack	3
+N	Sherman Bayer	Mini USB Table Fan Black	2
+N	Lanell Wyman	Titanium Camping Cookware Set	3
+N	Saundra Ziemann	Portable USB Desk Fan White	2
+N	Dale Hagenes	USB Rechargeable Tent Lanterns 4 Pack	3
