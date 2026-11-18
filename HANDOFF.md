@@ -234,3 +234,4 @@ No secrets (API keys, passwords) belong in this repo.
   - templates/product.json media gallery media_radius 20->16 (thumbnail_radius stays 0).
   - snippets/qc-global-styles.liquid: "Rounded corners: 16px" block overriding custom qc-* cards/panels/menus/forms/banners, Judge.me panels, cart drawer + item images, search popup + its cards. Intentionally NOT changed: buttons and pill controls (999px), small SALE/sold-out/-% tags (3px), circles/flags/dots. Homepage collection cards and mega-menu images are square (0px) and were left square.
   - Product card borders now #ece7e2 (var(--qc-line), same as the collection sidebar cards), incl. search popup cards.
+  - templates/index.json: both hero slideshows corner_radius 20->16; collection grid card border_radius 10->16 and card image 20->16 (verified on preview). Note: a first upload accidentally changed the disabled "Media with text" section's background/padding; restored to color3 / 0 / 0 in the next upload.
