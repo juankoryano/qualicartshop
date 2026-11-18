@@ -229,3 +229,8 @@ No secrets (API keys, passwords) belong in this repo.
 - Written via Admin API themeFilesUpsert because theme_bash kept failing with "Could not authorize this store for the theme tools". Verified on preview_theme_id: no Liquid errors, no "Top Sales"/best-selling left on home, /collections, /collections/all, collection, product, search pages.
 - Sort bar order (2026-11-18, theme copy v2): Popular - Top Rated - Latest - Sale - Price (desktop buttons and mobile dropdowns). Homepage desktop bar gained a Sale button (it was only in the mobile menu). /collections rows have no Sale (that row section never supported the sale sort). Uploaded via Admin API themeFilesUpsert; checksums verified.
 - Preference: do theme edits through the Admin API (GraphQL theme files read + themeFilesUpsert), not theme_bash or Chrome.
+- Rounded corners = 16px theme-wide (2026-11-18, theme copy v2), buttons excluded:
+  - config/settings_data.json (current): product_corner_radius 10->16, card_corner_radius 10->16, popover_border_radius 14->16, inputs_border_radius 4->16 (variant_button_radius stays 100 = pill buttons). Presets untouched.
+  - templates/product.json media gallery media_radius 20->16 (thumbnail_radius stays 0).
+  - snippets/qc-global-styles.liquid: "Rounded corners: 16px" block overriding custom qc-* cards/panels/menus/forms/banners, Judge.me panels, cart drawer + item images, search popup + its cards. Intentionally NOT changed: buttons and pill controls (999px), small SALE/sold-out/-% tags (3px), circles/flags/dots. Homepage collection cards and mega-menu images are square (0px) and were left square.
+  - Product card borders now #ece7e2 (var(--qc-line), same as the collection sidebar cards), incl. search popup cards.
